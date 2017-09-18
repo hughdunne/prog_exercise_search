@@ -1,7 +1,5 @@
-var config = require('config');
 var pg = require('pg-promise')({promiseLib: require('bluebird')});
-var connectionString = `postgres://${config.user}:${config.password}@${config.host}:${config.port}/${config.database}`;
-var db = pg(connectionString);
+var db = pg(process.env.DATABASE_URL);
 
 function searchUser(req, res, next) {
   var query = 'SELECT "Number", givenname, surname FROM users';
